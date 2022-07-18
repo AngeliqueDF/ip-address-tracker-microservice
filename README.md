@@ -44,8 +44,6 @@ I wrote this module to replace an external API I needed to find the IP address o
 | ----------- | ---------------------------------- |
 | 200         | **search** is a valid domain name. |
 
-Body of the response
-
 ```json
 {
 	"message": "Found an IP address",
@@ -59,8 +57,6 @@ Body of the response
 | ----------- | -------------------------------------- |
 | 400         | **search** is an IPv4 or IPv6 address. |
 
-Body of the response
-
 ```json
 {
 	"message": "You have searched an IPv4 address.",
@@ -73,8 +69,6 @@ Body of the response
 | Status code | Description                            |
 | ----------- | -------------------------------------- |
 | 404         | **search** is an invalid search query. |
-
-Body of the response
 
 ```json
 {
