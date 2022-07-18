@@ -1,5 +1,7 @@
 # Domain name to IP address lookup microservice
 
+![Screenshot of the IP address tracker app on desktop.](./screenshot-ip-address-tracker-microservice.png)
+
 _The backend for the IP address tracker_
 
 ## How to run the project
