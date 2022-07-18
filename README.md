@@ -26,11 +26,9 @@ I wrote this module to replace an external API I needed to find the IP address o
 
 ## API
 
-### Find the IP address of a domain name.
+### `GET` /api/search?={search}
 
-```
-`GET` /api/search?={search}
-```
+Find the IP address of a domain name.
 
 #### Parameters
 
@@ -78,6 +76,15 @@ I wrote this module to replace an external API I needed to find the IP address o
 ```
 
 ---
+
+## Status
+
+The server is live and hosted on heroku. But it could use improvements.
+
+### Planned changes
+
+- [ ] Improve security.
+- [ ] Restrict allowed origins.
 
 ## Author
 
