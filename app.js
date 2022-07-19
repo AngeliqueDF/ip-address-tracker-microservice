@@ -58,7 +58,7 @@ app.get("/api/", async (req, res, next) => {
 app.use((err, req, res, next) => {
 	return res.status(404).json({
 		message:
-			"Could not find information from the search provided. Make sure to enter a valid the domain name or IP address.",
+			"Could not find information from the search provided. Make sure to enter a valid domain name or IP address.",
 		result: null,
 	});
 });
