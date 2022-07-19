@@ -12,13 +12,16 @@ app.use(cors({ origin: "*" }));
 const getLocationData = async (search = "") => {
 	console.log("Searching location data for: ", search);
 	const apiBasicUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IP_API_KEY}&ip=`;
-	const response = await axios.get(`${apiBasicUrl}${search}`);
-	console.log(response.data);
-
-	if (response.status === 200) {
-		return response.data;
-	} else {
-		throw new Error();
+	try {
+		const response = await axios.get(`${apiBasicUrl}${search}`);
+		console.log(response.data);
+		if (response.status === 200) {
+			return response.data;
+		} else {
+			throw new Error();
+		}
+	} catch (error) {
+		console.log(error);
 	}
 };
 
