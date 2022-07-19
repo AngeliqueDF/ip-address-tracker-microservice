@@ -42,7 +42,7 @@ app.get("/api/", async (req, res, next) => {
 	next();
 });
 
-app.get("/api/", async (req, res, next) => {
+app.get("/api/", (req, res, next) => {
 	const search = req.query.search;
 
 	// Checks whether the user specified a protocol in their search
@@ -55,15 +55,13 @@ app.get("/api/", async (req, res, next) => {
 		const parsedSearch = new URL(urlWithProtocol);
 
 		// Use the dns Node module to find the IP address from the hostname
-		dns.resolve4(parsedSearch.hostname, (err, addresses) => {
+		dns.resolve4(parsedSearch.hostname, async (err, addresses) => {
 			// If dns threw an error, move on to the error handler (follows the documentation).
 			if (err) next(err);
 			try {
 				// Accessing the addresses array can throw an error TypeError: Cannot read properties of undefined (reading '0'). To avoid crashing the app, we enclose the code in the try/catch statement.
-				return res.json({
-					message: "Found an IP address",
-					result: addresses[0],
-				});
+				const data = await getLocationData(addresses[0]);
+				res.json({ data });
 			} catch (error) {
 				// If there was a problem accessing addresses, throw an error.
 				console.log(error);
