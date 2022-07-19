@@ -4,9 +4,23 @@ const helmet = require("helmet");
 const dns = require("dns");
 const net = require("net");
 const cors = require("cors");
+const axios = require("axios");
 
 app.use(helmet());
 app.use(cors());
+
+const getLocationData = async (search = "") => {
+	console.log("Searching location data for: ", search);
+	const apiBasicUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IP_API_KEY}&ip=`;
+	const response = await axios.get(`${apiBasicUrl}${search}`);
+	console.log(response.data);
+
+	if (response.status === 200) {
+		return response.data;
+	} else {
+		throw new Error();
+	}
+};
 
 app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
