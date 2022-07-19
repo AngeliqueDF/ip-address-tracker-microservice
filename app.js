@@ -36,10 +36,8 @@ app.get("/api/", async (req, res, next) => {
 	const isIpAddress = net.isIP(search);
 	if (isIpAddress) {
 		console.log(`This is an IPv${isIpAddress} address.`);
-		return res.status(400).json({
-			message: `You have searched an IPv${isIpAddress} address.`,
-			result: null,
-		});
+		const data = await getLocationData(search);
+		return res.json({ data });
 	}
 	next();
 });
