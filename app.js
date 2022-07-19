@@ -7,7 +7,7 @@ const cors = require("cors");
 const axios = require("axios");
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 const getLocationData = async (search = "") => {
 	console.log("Searching location data for: ", search);
