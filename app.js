@@ -25,7 +25,7 @@ const getLocationData = async (search = "") => {
 app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
 	if (search === "") {
-		const data = await getLocationData(search);
+		const data = await getLocationData(req.ip);
 		return res.json({ data });
 	}
 	next();
