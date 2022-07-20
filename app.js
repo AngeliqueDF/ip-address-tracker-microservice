@@ -27,15 +27,6 @@ const getLocationData = async (search = "") => {
 
 app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
-	if (search === "") {
-		const data = await getLocationData(req.ip);
-		return res.json({ data });
-	}
-	next();
-});
-
-app.get("/api/", async (req, res, next) => {
-	const search = req.query.search;
 	const isIpAddress = net.isIP(search);
 	if (isIpAddress) {
 		console.log(`This is an IPv${isIpAddress} address.`);
