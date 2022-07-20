@@ -16,6 +16,7 @@ _The backend for the IP address tracker_
 
 - Validate an IP address.
 - Find the IP address of any domain name (handles URLs entered with or without the protocol).
+- Uses ipgeolocation.io.
 
 ## Technologies
 
