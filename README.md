@@ -41,29 +41,9 @@ Find the IP address of a domain name.
 
 #### Response
 
-| Status code | Description                        |
-| ----------- | ---------------------------------- |
-| 200         | **search** is a valid domain name. |
-
-```json
-{
-	"message": "Found an IP address",
-	"result": "142.250.187.238"
-}
-```
-
----
-
-| Status code | Description                            |
-| ----------- | -------------------------------------- |
-| 400         | **search** is an IPv4 or IPv6 address. |
-
-```json
-{
-	"message": "You have searched an IPv4 address.",
-	"result": null
-}
-```
+| Status code | Description                                                                                                               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------- |
+| 200         | **search** is a valid domain name, or an IPv4 or IPv6 address. The server will return the response from the external API. |
 
 ---
 
