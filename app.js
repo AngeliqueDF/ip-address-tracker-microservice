@@ -31,7 +31,7 @@ app.get("/api/", async (req, res, next) => {
 	if (isIpAddress) {
 		console.log(`This is an IPv${isIpAddress} address.`);
 		const data = await getLocationData(search);
-		return res.json({ data });
+		return res.json({ ...data });
 	}
 	next();
 });
@@ -55,7 +55,7 @@ app.get("/api/", (req, res, next) => {
 			try {
 				// Accessing the addresses array can throw an error TypeError: Cannot read properties of undefined (reading '0'). To avoid crashing the app, we enclose the code in the try/catch statement.
 				const data = await getLocationData(addresses[0]);
-				res.json({ data });
+				res.json({ ...data });
 			} catch (error) {
 				// If there was a problem accessing addresses, throw an error.
 				console.log(error);
