@@ -9,7 +9,7 @@ const axios = require("axios");
 app.use(helmet());
 app.use(cors({ origin: "*" }));
 
-const getLocationData = async (search = "") => {
+const getLocationData = async (search) => {
 	console.log("Searching location data for: ", search);
 	const apiBasicUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IP_API_KEY}&ip=`;
 	try {
