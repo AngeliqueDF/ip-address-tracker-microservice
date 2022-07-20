@@ -9,7 +9,7 @@ const axios = require("axios");
 app.use(helmet());
 app.use(cors({ origin: "*" }));
 
-const getLocationData = async (search = "") => {
+const getLocationData = async (search) => {
 	console.log("Searching location data for: ", search);
 	const apiBasicUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IP_API_KEY}&ip=`;
 	try {
@@ -27,20 +27,11 @@ const getLocationData = async (search = "") => {
 
 app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
-	if (search === "") {
-		const data = await getLocationData(req.ip);
-		return res.json({ data });
-	}
-	next();
-});
-
-app.get("/api/", async (req, res, next) => {
-	const search = req.query.search;
 	const isIpAddress = net.isIP(search);
 	if (isIpAddress) {
 		console.log(`This is an IPv${isIpAddress} address.`);
 		const data = await getLocationData(search);
-		return res.json({ data });
+		return res.json({ ...data });
 	}
 	next();
 });
@@ -64,7 +55,7 @@ app.get("/api/", (req, res, next) => {
 			try {
 				// Accessing the addresses array can throw an error TypeError: Cannot read properties of undefined (reading '0'). To avoid crashing the app, we enclose the code in the try/catch statement.
 				const data = await getLocationData(addresses[0]);
-				res.json({ data });
+				res.json({ ...data });
 			} catch (error) {
 				// If there was a problem accessing addresses, throw an error.
 				console.log(error);
