@@ -1,6 +1,6 @@
 # Domain name to IP address lookup microservice
 
-![Screenshot of the IP address tracker app on desktop.](./screenshot-ip-address-tracker-microservice.png)
+![Screenshot of a JSON response from the IP Adress tracker microservice.](./screenshot-ip-address-tracker-microservice.png)
 
 _The backend for the IP address tracker_
 
