@@ -6,6 +6,7 @@ require("dotenv").config();
 
 import { IPAddressValidator } from "./IPAddressValidator";
 import { APIController } from "./APIController";
+import { URLSearched } from "./URLSearched";
 
 const helmet = require("helmet");
 const cors = require("cors");
@@ -32,6 +33,25 @@ app.get("/api/", async (req: any, res: any, next: any) => {
 		}
 	}
 	next();
+});
+
+/**
+ *  Middleware for domain names.
+ */
+app.get("/api/", async (req: any, res: any, next: any) => {
+	const search = req.query.search;
+
+	const apiCaller = new APIController();
+	const urlSearched = new URLSearched(search);
+	const ipAddress = await urlSearched.getIpAddress();
+
+	try {
+		const data = await apiCaller.getLocationData(ipAddress);
+		res.status(200).json(data);
+	} catch (error) {
+		console.log(error);
+		next(error);
+	}
 });
 
 server.listen(process.env.PORT || 5000, () => {
