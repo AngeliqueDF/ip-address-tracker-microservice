@@ -55,6 +55,13 @@ app.get("/api/", async (req: any, res: any, next: any) => {
 	}
 });
 
+app.get("/api/", async (req: any, res: any, err: any) => {
+	console.log(req.body, req.param, req.query);
+	console.log(err);
+
+	return res.status(500).json({ message: err.message });
+});
+
 server.listen(process.env.PORT || 5000, () => {
 	console.log(`Server running on port ${5000}`);
 });
