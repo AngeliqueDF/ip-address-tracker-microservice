@@ -29,6 +29,7 @@ app.get("/api/", async (req: any, res: any, next: any) => {
 			const data = await apiCaller.getLocationData(search);
 			return res.status(200).json(data);
 		} catch (error) {
+			console.trace(error);
 			next(error);
 		}
 	}
