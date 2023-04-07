@@ -4,5 +4,7 @@ export type GeoLocationData = {
 	city: string;
 	district: string;
 	zipcode: string;
-	time_zone: string;
+	time_zone: { offset: string };
+	latitude: string;
+	longitude: string;
 };
