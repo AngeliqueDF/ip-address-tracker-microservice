@@ -43,14 +43,14 @@ app.get("/api/", async (req: any, res: any, next: any) => {
 	const search = req.query.search;
 
 	const apiCaller = new APIController();
-	const urlSearched = new URLSearched(search);
-	const ipAddress = await urlSearched.getIpAddress();
 
 	try {
+		const urlSearched = new URLSearched(search);
+		const ipAddress = await urlSearched.getIpAddress();
 		const data = await apiCaller.getLocationData(ipAddress);
-		res.status(200).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
-		console.log(error);
+		console.trace(error);
 		next(error);
 	}
 });
