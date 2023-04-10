@@ -14,6 +14,26 @@ const cors = require("cors");
 app.use(helmet());
 app.use(cors());
 
+/**
+ * Middleware for empty search.
+ */
+
+app.get("/api/", async (req, res, next) => {
+	const search = req.query.search;
+	const apiCaller = new APIController();
+
+	if (search && search.length === 0) {
+		try {
+			const data = await apiCaller.getLocationData("" + search);
+			return res.status(200).json(data);
+		} catch (error) {
+			console.log(error);
+			next(error);
+		}
+	}
+
+	return next();
+});
 
 /**
  * Middleware for IP addresses.
