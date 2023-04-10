@@ -18,16 +18,16 @@ app.use(cors());
 /**
  * Middleware for IP addresses.
  */
-app.get("/api/", async (req: any, res: any, next: any) => {
+app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
-	const ipValidator = new IPAddressValidator(search);
+	const ipValidator = new IPAddressValidator("" + search);
 
 	if (ipValidator.getIsIpAddress()) {
 		console.log(`This is an IPv${ipValidator.getIsIpAddress()} address.`);
 		const apiCaller = new APIController();
 
 		try {
-			const data = await apiCaller.getLocationData(search);
+			const data = await apiCaller.getLocationData("" + search);
 			return res.status(200).json(data);
 		} catch (error) {
 			console.trace(error);
@@ -35,6 +35,7 @@ app.get("/api/", async (req: any, res: any, next: any) => {
 		}
 	}
 	next();
+	return;
 });
 
 /**
