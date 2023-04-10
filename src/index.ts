@@ -78,10 +78,9 @@ app.get("/api/", async (req, res, next) => {
 	return res.status(200).json(data);
 });
 
-app.get("/api/", async (req: any, res: any, err: any) => {
-	console.log(req.body, req.param, req.query);
-	console.log(err);
-
+// @ts-ignore
+app.get("/api/", async (err, req, res, next) => {
+	console.trace(err);
 	return res.status(500).json({ message: err.message });
 });
 
