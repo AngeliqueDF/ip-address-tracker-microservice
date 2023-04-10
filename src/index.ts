@@ -40,20 +40,21 @@ app.get("/api/", async (req: any, res: any, next: any) => {
 /**
  *  Middleware for domain names.
  */
-app.get("/api/", async (req: any, res: any, next: any) => {
+app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
 
 	const apiCaller = new APIController();
+	let data;
 
 	try {
-		const urlSearched = new URLSearched(search);
+		const urlSearched = new URLSearched("" + search);
 		const ipAddress = await urlSearched.getIpAddress();
-		const data = await apiCaller.getLocationData(ipAddress);
-		return res.status(200).json(data);
+		data = await apiCaller.getLocationData(ipAddress);
 	} catch (error) {
 		console.trace(error);
 		next(error);
 	}
+	return res.status(200).json(data);
 });
 
 app.get("/api/", async (req: any, res: any, err: any) => {
