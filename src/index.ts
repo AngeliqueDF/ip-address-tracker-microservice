@@ -12,7 +12,11 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 app.use(helmet());
-app.use(cors());
+
+// @ts-ignore
+app.use((req, res, next) => {
+	next();
+}, cors({ maxAge: 84600 }));
 
 /**
  * Middleware for empty search.
