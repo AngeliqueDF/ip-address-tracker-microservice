@@ -37,13 +37,13 @@ Find the IP address of a domain name.
 
 | Name   | Type   | Description                                                                          |
 | ------ | ------ | ------------------------------------------------------------------------------------ |
-| search | string | The domain name or IP address searched. Example "google.com" or "https://google.com" |
+| search | string | An empty string, domain name or IP address. Example "google.com" or "https://google.com" |
 
 #### Response
 
 | Status code | Description                                                                                                               |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
-| 200         | **search** is a valid domain name, or an IPv4 or IPv6 address. The server will return the response from the external API. |
+| 200         | **search** is a valid: the server will filter the response from the external API and return the data needed by the frontend.|
 
 ---
 
