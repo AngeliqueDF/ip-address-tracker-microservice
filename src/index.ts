@@ -19,10 +19,9 @@ app.use(cors());
  */
 
 app.get("/api/", async (req, res, next) => {
-	const search = req.query.search;
+	const search: any = req.query.search;
 	const apiCaller = new APIController();
-
-	if (search && search.length === 0) {
+	if (search.length === 0) {
 		try {
 			const data = await apiCaller.getLocationData("" + search);
 			return res.status(200).json(data);
@@ -54,8 +53,7 @@ app.get("/api/", async (req, res, next) => {
 			next(error);
 		}
 	}
-	next();
-	return;
+	return next();
 });
 
 /**
