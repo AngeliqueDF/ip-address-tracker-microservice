@@ -17,7 +17,6 @@ app.use(cors());
 /**
  * Middleware for empty search.
  */
-
 app.get("/api/", async (req, res, next) => {
 	const search: any = req.query.search;
 	const apiCaller = new APIController();
@@ -30,7 +29,6 @@ app.get("/api/", async (req, res, next) => {
 			next(error);
 		}
 	}
-
 	return next();
 });
 
@@ -40,11 +38,9 @@ app.get("/api/", async (req, res, next) => {
 app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
 	const ipValidator = new IPAddressValidator("" + search);
-
 	if (ipValidator.getIsIpAddress()) {
 		console.log(`This is an IPv${ipValidator.getIsIpAddress()} address.`);
 		const apiCaller = new APIController();
-
 		try {
 			const data = await apiCaller.getLocationData("" + search);
 			return res.status(200).json(data);
@@ -61,10 +57,8 @@ app.get("/api/", async (req, res, next) => {
  */
 app.get("/api/", async (req, res, next) => {
 	const search = req.query.search;
-
 	const apiCaller = new APIController();
 	let data;
-
 	try {
 		const urlSearched = new URLSearched("" + search);
 		const ipAddress = await urlSearched.getIpAddress();
