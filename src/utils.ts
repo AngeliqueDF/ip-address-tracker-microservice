@@ -7,7 +7,7 @@ export function formatOffset(offset: number): string {
 		offsetString += offset * -1;
 	} else {
 		if (offset <= 9) {
-			offsetString += "0";
+			offsetString += "+0";
 		}
 		offsetString += offset;
 	}
